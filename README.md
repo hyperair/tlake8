@@ -44,3 +44,6 @@ the [LICENSE](LICENSE) file for details
 * [README-Template.md from PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 * [flake8](https://github.com/PyCQA/flake8) -- a great linting tool that really
   hates tabs
+* [Rejected pycodestyle smart-tabs PR](https://github.com/PyCQA/pycodestyle/pull/397) --
+  kudos to [dsedivec](https://github.com/dsedivec) for the initial attempt at
+  making flake8 usable with tab indentation
