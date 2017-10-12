@@ -1,13 +1,13 @@
-#!/usr/bin/env python
-
 import re
-import sys
 
 import flake8.processor
-from flake8.main.cli import main
 
 
 class tabfilteredfile(file):
+    """
+    `file` derivative class that replaces indentation tabs with 4 spaces to
+    please flake8
+    """
     indentation_regex = re.compile(r'^(\t+)')
 
     def readline(self, *args, **kwargs):
@@ -32,7 +32,9 @@ def filtering_open(*args, **kwargs):
     return tabfilteredfile(*args, **kwargs)
 
 
-if __name__ == '__main__':
+def patch_flake8():
     flake8.processor.open = filtering_open
-    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-    sys.exit(main())
+
+
+def unpatch_flake8():
+    flake8.processor.open = open

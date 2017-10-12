@@ -9,6 +9,7 @@ setup(
     author='Chow Loong Jin',
     author_email='hyperair@debian.org',
     url='https://www.github.com/hyperair/tlake8',
-    scripts=['tlake8'],
+    scripts=['bin/tlake8'],
+    packages=['tlake8'],
     install_requires=['flake8']
 )
