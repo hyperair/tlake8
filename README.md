@@ -28,7 +28,7 @@ $ tlake8 --help
 
 ## Authors
 
-* **Chow Loong Jin** - *Initial work* [hyperair](https://github.com/hyperair)
+* **Chow Loong Jin** - *Initial work* - [hyperair](https://github.com/hyperair)
 
 See also the list
 of [contributors](https://github.com/hyperair/tlake8/contributors) who
