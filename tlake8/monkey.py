@@ -1,6 +1,11 @@
 import re
 
+import flake8.main.git
+import flake8.main.mercurial
 import flake8.processor
+
+import tlake8.main.git
+import tlake8.main.mercurial
 
 
 class tabfilteredfile(file):
@@ -34,6 +39,8 @@ def filtering_open(*args, **kwargs):
 
 def patch_flake8():
     flake8.processor.open = filtering_open
+    flake8.main.git._HOOK_TEMPLATE = tlake8.main.git._HOOK_TEMPLATE
+    flake8.main.mercurial.hook = tlake8.main.mercurial.hook
 
 
 def unpatch_flake8():
