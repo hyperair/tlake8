@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import re
+import sys
+
+import flake8.processor
+from flake8.main.cli import main
+
+
+class tabfilteredfile(file):
+    indentation_regex = re.compile(r'^(\t+)')
+
+    def readline(self, *args, **kwargs):
+        line = super(tabfilteredfile, self).readline(*args, **kwargs)
+        strtype = type(line)
+        line = self.indentation_regex.sub(
+            lambda idn: strtype(' ') * len(idn.group(1)), line)
+
+        return line
+
+    def readlines(self):
+        def gen():
+            while True:
+                buf = self.readline()
+                if not buf:
+                    break
+                yield buf
+        return list(gen())
+
+
+def filtering_open(*args, **kwargs):
+    return tabfilteredfile(*args, **kwargs)
+
+
+if __name__ == '__main__':
+    flake8.processor.open = filtering_open
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
